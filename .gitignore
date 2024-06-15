@@ -1,0 +1,31 @@
+# Xmake cache
+.xmake/
+build/
+vsxmake2022/
+# MacOS Cache
+.DS_Store
+*.cover
+*.o
+*.orig
+*.pyc
+*.pyd
+*.pyo
+*.rej
+*.swp
+*.gc??
+*.profclang?
+*.profraw
+*.dyn
+/bin
+/bin-tmp
+/help
+/.vs
+*.log
+*.dll
+*.lib
+*.vcxproj
+*.filters
+*.user
+.xmake/
+build/
+/.vscode/compile_commands.json
