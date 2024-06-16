@@ -3,5 +3,6 @@
 namespace SP {
 
 Application::Application(){};
+void Application::Init(){};
 void Application::Run(){};
 }   // namespace SP

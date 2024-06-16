@@ -1,13 +1,12 @@
-﻿#include "EntryPoint.h"
+﻿#include "Application.h"
 #include <iostream>
 
 
 class Sandbox : public SP::Application
 {};
 
-
-
-SP::Application* SP::CreateApplication()
+int main()
 {
-    return new Sandbox();
+    Sandbox sandbox;
+    sandbox.Run();
 }

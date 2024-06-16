@@ -13,4 +13,4 @@
     - 生成CompileCommands, 避免vscode 中include 目录的问题报错，会根据compile_commands 找到 include 目录
 
 2. xmake project -k vsxmake -m "debug,release"   : 生成 vs 工程
-3. 
+3. xmake test : 执行单元测试

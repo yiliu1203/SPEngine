@@ -2,13 +2,14 @@
 #include "PCH.h"
 
 namespace SP {
-class Application
+class SP_API Application
 {
 public:
     Application();
-    void Run();
+    virtual void Init();
+    virtual void Run();
 };
 
-Application* CreateApplication();
+// SP_API Application* CreateApplication();
 
 }   // namespace SP
