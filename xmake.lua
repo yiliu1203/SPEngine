@@ -46,7 +46,7 @@ for _, file in ipairs(os.files("SPEngine/**/Test_*.cpp")) do
         set_default(false)
         -- add_files("src/" .. name .. ".cpp")
         add_files(file)
-        add_tests("default")
+        add_tests(name)
         add_packages("catch2")
         -- add_tests("args", {runargs = {"foo", "bar"}})
         -- add_tests("pass_output", {trim_output = true, runargs = "foo", pass_outputs = "hello foo"})
