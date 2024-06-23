@@ -13,10 +13,22 @@ add_cxflags("/wd4819", {force=true})
 add_requires("catch2");
 
 target("000_Hello")
-    set_group("Demos")
+    set_group("Samples")
     set_kind("binary")
     add_packages("catch2")
-    add_files("SPEngine/Samples/000_Hello/*.cpp|Test_*.cpp")
+    add_files("SPEngine/Samples/000_Hello/*.cpp|Test_*.cpp")  -- exclude Test_*.cpp
+
+target("001_External")
+    set_group("Samples")
+    set_kind("binary")
+    add_files("SPEngine/Samples/001_External/*.cpp|Test_*.cpp")
+
+    add_deps("Engine")
+    add_links("Engine")
+    add_defines("SP_DYNAMIC_DLL")
+    add_includedirs("SPEngine/Source/Engine/")
+    add_includedirs("SPEngine/Source/External/")
+
 
 target("Engine")
     set_group("Engine")
@@ -36,6 +48,7 @@ target("Sandbox")
     add_files("SPEngine/Sandbox/*.cpp|Test_*.cpp")
 
     add_includedirs("SPEngine/Source/Engine/")
+    add_includedirs("SPEngine/Source/External/")
 
 
 ---TestCase-----

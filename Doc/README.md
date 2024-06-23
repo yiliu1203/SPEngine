@@ -14,3 +14,9 @@
 
 2. xmake project -k vsxmake -m "debug,release"   : 生成 vs 工程
 3. xmake test : 执行单元测试  (https://www.cnblogs.com/tboox/p/17816608.html)
+
+
+## External
+
+1. [catch2](https://github.com/catchorg/Catch2) a unit testing framework for C++
+2. [inja](https://github.com/pantor/inja?tab=readme-ov-file)
