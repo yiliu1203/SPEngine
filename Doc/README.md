@@ -4,6 +4,7 @@
 2. xmake 和 vscode xmake 插件
 3. clang-format工具
 4. vcpackage (可能会用上)
+5. llvm(生成反射用)
 
 
 ## 常用命令行
@@ -20,3 +21,6 @@
 
 1. [catch2](https://github.com/catchorg/Catch2) a unit testing framework for C++
 2. [inja](https://github.com/pantor/inja?tab=readme-ov-file)
+3. [json]
+
+## Tools

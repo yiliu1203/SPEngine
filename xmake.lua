@@ -10,7 +10,7 @@ set_languages("clatest", "cxx20")
 -- add_defines( "UNICODE", "_UNICODE")
 add_cxflags("/execution-charset:utf-8", {force=true})
 add_cxflags("/wd4819", {force=true})
-add_requires("catch2");
+add_requires("catch2")
 
 target("000_Hello")
     set_group("Samples")
@@ -30,13 +30,24 @@ target("001_External")
     add_includedirs("SPEngine/Source/External/")
 
 
+target("01_ReflectGenerator")
+    set_group("Samples")
+    set_kind("binary")
+    add_files("SPEngine/Tools/01_ReflectGenerator/*.cpp|Test_*.cpp")
+
+    add_deps("Engine")
+    add_links("Engine")
+    add_defines("SP_DYNAMIC_DLL")
+    add_includedirs("SPEngine/Source/Engine/")
+    add_includedirs("SPEngine/Source/External/")
+    add_options("Tool-LibClang")
+
+
 target("Engine")
     set_group("Engine")
     set_kind("shared")
     add_defines("SP_DYNAMIC_DLL", "SP_BUILD_DLL")
-
     add_files("SPEngine/Source/Engine/*.cpp|Test_*.cpp")
-
     add_headerfiles("SPEngine/Source/Engine/*.h")
 
 target("Sandbox")
@@ -65,3 +76,11 @@ for _, file in ipairs(os.files("SPEngine/**/Test_*.cpp")) do
         -- add_tests("pass_output", {trim_output = true, runargs = "foo", pass_outputs = "hello foo"})
         -- add_tests("fail_output", {fail_outputs = {"hello2 .*", "hello xmake"}})
 end
+
+
+option("Tool-LibClang")
+    add_links("libclang")
+    add_linkdirs("SPEngine/Tools/00_LibClang/lib")
+    add_rpathdirs("SPEngine/Tools/00_LibClang/bin")
+    add_includedirs("SPEngine/Tools/00_LibClang/include")
+option_end()
