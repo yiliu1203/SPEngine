@@ -16,12 +16,18 @@ int main(int argc, const char** argv)
     CXIndex index{clang_createIndex(1, 1)};
     auto    result = clang_parseTranslationUnit(
         index,
-        "D:/myWorkVirtualZ/SPingEngine/Github_SPEngineFrom0/SPEngine/Tools/01_ReflectGenerator/Test_cpp.cpp",
+        "D:/myWorkVirtualZ/SPingEngine/Github_SPEngineFrom0/SPEngine/Tools/Tool_01_ReflectGenerator/Test_cpp.cpp",
+        // "D:/myWorkVirtualZ/SPingEngine/Github_SPEngineFrom0/SPEngine/Sandbox/SandboxApp.cpp",
         nullptr,
         0,
         nullptr,
         0,
         0);
+
+
+#ifdef __clang__
+    std::cout << "Define Clang\n";
+#endif
 
     auto cur = clang_getTranslationUnitCursor(result);
     clang_visitChildren(

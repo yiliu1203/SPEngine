@@ -8,8 +8,8 @@ set_optimize("none")
 -- add_requires("lunasvg");
 set_languages("clatest", "cxx20")
 -- add_defines( "UNICODE", "_UNICODE")
-add_cxflags("/execution-charset:utf-8", {force=true})
-add_cxflags("/wd4819", {force=true})
+-- add_cxflags("/execution-charset:utf-8", {force=true})
+-- add_cxflags("/wd4819", {force=true})
 add_requires("catch2")
 
 target("000_Hello")
@@ -29,11 +29,6 @@ target("001_External")
     add_includedirs("SPEngine/Source/Engine/")
     add_includedirs("SPEngine/Source/External/")
 
-
-target("01_ReflectGenerator")
-    set_group("Samples")
-    set_kind("binary")
-    add_files("SPEngine/Tools/01_ReflectGenerator/*.cpp|Test_*.cpp")
 
     add_deps("Engine")
     add_links("Engine")
@@ -62,6 +57,16 @@ target("Sandbox")
     add_includedirs("SPEngine/Source/External/")
 
 
+
+-------Tools-----------------
+
+target("Tool_01_ReflectGenerator")
+    set_group("Samples")
+    set_kind("binary")
+    set_toolchains("myclang")
+    add_files("SPEngine/Tools/Tool_01_ReflectGenerator/*.cpp|Test_*.cpp")
+    add_options("Tool-LibClang")
+
 ---TestCase-----
 for _, file in ipairs(os.files("SPEngine/**/Test_*.cpp")) do
     local name = path.basename(file)
@@ -78,9 +83,17 @@ for _, file in ipairs(os.files("SPEngine/**/Test_*.cpp")) do
 end
 
 
+toolchain("myclang")
+    set_kind("standalone")
+    set_toolset("cc", "clang")
+    set_toolset("cxx", "clang", "clang++")
+    set_toolset("ld", "clang++", "clang")
+
+
+local llvm_root = "D:/Program Files/LLVM"
 option("Tool-LibClang")
     add_links("libclang")
-    add_linkdirs("SPEngine/Tools/00_LibClang/lib")
-    add_rpathdirs("SPEngine/Tools/00_LibClang/bin")
-    add_includedirs("SPEngine/Tools/00_LibClang/include")
+    add_linkdirs(llvm_root .. "/lib")
+    add_rpathdirs(llvm_root .. "/bin")
+    add_includedirs(llvm_root .. "/include")
 option_end()
