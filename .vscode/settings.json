@@ -90,7 +90,10 @@
         "codecvt": "cpp",
         "*.in": "c",
         "registration_friend": "cpp",
-        "type": "cpp"
+        "type": "cpp",
+        "numeric": "cpp",
+        "stack": "cpp",
+        "valarray": "cpp"
     },
     "C_Cpp.default.cppStandard": "c++20",
     "search.exclude": {

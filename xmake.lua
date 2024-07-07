@@ -65,12 +65,14 @@ target("Tool_01_ReflectGenerator")
     set_kind("binary")
     set_toolchains("myclang")
     add_files("SPEngine/Tools/Tool_01_ReflectGenerator/*.cpp|Test_*.cpp")
+    add_headerfiles("SPEngine/Tools/Tool_01_ReflectGenerator/*.hpp")
     add_options("Tool-LibClang")
 
 ---TestCase-----
 for _, file in ipairs(os.files("SPEngine/**/Test_*.cpp")) do
     local name = path.basename(file)
     target(name)
+        set_group("UnitTest")
         set_kind("binary")
         set_default(false)
         -- add_files("src/" .. name .. ".cpp")
