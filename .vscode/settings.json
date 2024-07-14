@@ -114,8 +114,7 @@
     "clang-format.executable": "D:\\Program Files\\LLVM\\bin\\clang-format.exe",
     "clang-format.style": "file",
     "files.encoding": "utf8bom",
+    "pasteImage.path": "${currentFileDir}/images",
     "pasteImage.basePath": "${currentFileDir}",
     "pasteImage.defaultName": "YMMDDHHmmss",
-    "pasteImage.path": "${currentFileDir}/images/",
-    "C_Cpp.clang_format_sortIncludes": null
 }

@@ -15,7 +15,14 @@
 xmake f --use_gl=n --use_glfw=n --use_dx11=n
 
 ## 命名规范
-成员变量：  mAbcDef;
+
+类名：      AbcDef
+成员变量：  m_abc_def;
+成员方法：  abc_def
+
+静态变量：  s_abc_def
+全局变量：  g_abc_def
+局部变量    abc_def
 
 
 ## xmake 使用

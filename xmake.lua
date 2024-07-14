@@ -37,6 +37,14 @@ target("001_External")
     add_includedirs("SPEngine/Source/External/")
     add_options("Tool-LibClang")
 
+target("002_TestLibClang")
+    set_group("Samples")
+    set_kind("binary")
+    set_toolchains("myclang")
+    add_files("SPEngine/Samples/002_TestLibClang/*.cpp|Test_*.cpp")
+    add_options("Tool-LibClang")
+
+
 
 target("Engine")
     set_group("Engine")
