@@ -10,6 +10,7 @@
 0. vscode 开发环境， 需要安装编译器 vs2022 或者minGW，作为编译器，或则开发环境
 1. xmake 的vscode 插件
 2. vcpackage ：rttr 官方 的c++20 编译由问题， 用了vcpkg, 所以需要安装 vcpackage, [vcpackage](https://learn.microsoft.com/zh-cn/vcpkg/get_started/get-started?pivots=shell-cmd)
+3. llvm (clang clang-formate) 安装， 加入环境变量
 
 ## 设置 option 
 xmake f --use_gl=n --use_glfw=n --use_dx11=n
