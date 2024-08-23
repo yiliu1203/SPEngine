@@ -111,7 +111,7 @@
         "**/*.code-search": true
     },
     "editor.formatOnSave": true,
-    // "clang-format.executable": "D:\\Program Files\\LLVM\\bin\\clang-format.exe",
+    "clang-format.executable": "clang-format.exe",
     "clang-format.style": "file",
     "files.encoding": "utf8bom",
     "pasteImage.path": "${currentFileDir}/images",

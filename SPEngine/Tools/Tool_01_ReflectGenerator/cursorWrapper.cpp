@@ -5,7 +5,6 @@
 #include <iostream>
 #include <vector>
 
-
 namespace flection {
 cursor::cursor(const CXCursor& cursor) noexcept
     : _cursor(cursor)
