@@ -1,4 +1,5 @@
 ﻿#pragma once
 // clang-format off
 #define PROJECT_ROOT R"(${PROJECT_ROOT})"
+#define ENGINE_ROOT R"(${PROJECT_ROOT}\SPEngine)"
 // clang-format on

@@ -21,19 +21,19 @@ struct Color
         };
     };
 
-    Color()
+    constexpr Color()
         : r(0)
         , g(0)
         , b(0)
         , a(0)
     {}
-    Color(uint8_t inR, uint8_t inG, uint8_t inB)
+    constexpr Color(uint8_t inR, uint8_t inG, uint8_t inB)
         : r(inR)
         , g(inG)
         , b(inB)
         , a(255)
     {}
-    Color(uint8_t inR, uint8_t inG, uint8_t inB, uint8_t inA)
+    constexpr Color(uint8_t inR, uint8_t inG, uint8_t inB, uint8_t inA)
         : r(inR)
         , g(inG)
         , b(inB)
@@ -50,16 +50,13 @@ struct Color
     Color& operator=(const Color& inOther) = default;
 };
 
-using Color4B = Color<uint8>;
+using Color4B = Color<uint8_t>;
 using Color4F = Color<float>;
 
-struct ColorConsts
-{
-    static const Color4B white;
-    static const Color4B black;
-    static const Color4B red;
-    static const Color4B blue;
-    static const Color4B green;
-    // TODO more color here
-};
+constexpr Color4B white = Color4B(255, 255, 255, 255);
+constexpr Color4B black = Color4B(0, 0, 0, 1);
+constexpr Color4B red   = Color4B(1, 0, 0, 1);
+constexpr Color4B green = Color4B(0, 1, 0, 1);
+constexpr Color4B blue  = Color4B(0, 0, 1, 1);
+
 }   // namespace SP::math::details

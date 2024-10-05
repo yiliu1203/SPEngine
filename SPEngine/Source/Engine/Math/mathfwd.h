@@ -91,8 +91,8 @@ using vec4i = details::TVec4<int32>;
 using vec4u = details::TVec4<uint32>;
 using vec4b = details::TVec4<uint8>;
 
-using color4b = details::Color<uint8>;
-using color4f = details::Color<float>;
+using color4b = details::Color4B;
+using color4f = details::Color4F;
 // using color4f = LinearColor;
 
 // using namespace math::details;

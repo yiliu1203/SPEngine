@@ -49,6 +49,18 @@ target("003_Enum")
     set_kind("binary")
     add_files("SPEngine/Samples/003_Enum/*.cpp|Test_*.cpp")  -- exclude Test_*.cpp
 
+target("004_D3D12_1")
+    set_group("Samples")
+    set_kind("binary")
+    add_includedirs("SPEngine/Samples/004_D3D12_1")
+    add_includedirs("$(buildir)/config/SPing/")
+    add_files("SPEngine/Samples/004_D3D12_1/*.cpp|Test_*.cpp")  -- exclude Test_*.cpp
+     -- add package
+    add_packages("spdlog")
+    add_syslinks("User32", "kernel32", "Gdi32", "Shell32", "DXGI", "D3D12", "D3DCompiler")
+    set_runtimes("MD")
+    add_defines("_XM_NO_INTRINSICS_=1", "NOMINMAX", "UNICODE", "m128_f32=vector4_f32", "m128_u32=vector4_u32")
+
 
 target("Engine")
     set_group("Engine")
@@ -56,7 +68,6 @@ target("Engine")
     add_defines("SP_DYNAMIC_DLL", "SP_BUILD_DLL")
     add_files("SPEngine/Source/Engine/*.cpp|Test_*.cpp")
     add_files("SPEngine/Source/Engine/Core/*.cpp")
-    -- add_files("SPEngine/Source/Engine/Math/*.cpp")
     add_files("SPEngine/Source/Engine/Misc/*.cpp")
     add_files("SPEngine/Source/Engine/Event/*.cpp")
     add_includedirs("SPEngine/Source/Engine/")
