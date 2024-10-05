@@ -56,6 +56,12 @@ target("Engine")
     add_files("SPEngine/Source/Engine/*.cpp|Test_*.cpp")
     add_headerfiles("SPEngine/Source/Engine/*.h")
 
+    --- set_configvar
+    add_includedirs("$(buildir)/config/SPing/")  -- need build this path manual
+    set_configvar("PROJECT_ROOT",  "$(projectdir)")
+    set_configdir("$(buildir)/config/SPing")
+    add_configfiles("SPEngine/Source/ConfigSP.h.in")
+
 target("Sandbox")
     set_kind("binary")
     add_deps("Engine")
@@ -66,7 +72,6 @@ target("Sandbox")
 
     add_includedirs("SPEngine/Source/Engine/")
     add_includedirs("SPEngine/Source/External/")
-
 
 
 -------Tools-----------------
@@ -103,6 +108,7 @@ toolchain("myclang")
     set_toolset("ld", "clang++", "clang")
 
 
+--- need config for local envi--------
 local llvm_root = "D:/Program Files/LLVM"
 option("Tool-LibClang")
     add_links("libclang")

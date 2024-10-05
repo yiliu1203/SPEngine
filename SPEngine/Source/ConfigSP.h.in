@@ -1,0 +1,4 @@
+﻿#pragma once
+// clang-format off
+#define PROJECT_ROOT R"(${PROJECT_ROOT})"
+// clang-format on
