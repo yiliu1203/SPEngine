@@ -29,7 +29,6 @@ target("001_External")
     add_includedirs("SPEngine/Source/Engine/")
     add_includedirs("SPEngine/Source/External/")
 
-
     add_deps("Engine")
     add_links("Engine")
     add_defines("SP_DYNAMIC_DLL")
@@ -44,6 +43,10 @@ target("002_TestLibClang")
     add_files("SPEngine/Samples/002_TestLibClang/*.cpp|Test_*.cpp")
     add_options("Tool-LibClang")
 
+target("003_Enum")
+    set_group("Samples")
+    set_kind("binary")
+    add_files("SPEngine/Samples/003_Enum/*.cpp|Test_*.cpp")  -- exclude Test_*.cpp
 
 
 target("Engine")
