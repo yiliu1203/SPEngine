@@ -6,6 +6,7 @@ set_optimize("none")
 -- add_requires("imgui 1.90", {configs = {glfw = true, opengl3=true, freetype=true}})
 -- add_requires("freetype");
 -- add_requires("lunasvg");
+add_requires("spdlog")
 set_languages("clatest", "cxx20")
 -- add_defines( "UNICODE", "_UNICODE")
 -- add_cxflags("/execution-charset:utf-8", {force=true})
@@ -54,7 +55,16 @@ target("Engine")
     set_kind("shared")
     add_defines("SP_DYNAMIC_DLL", "SP_BUILD_DLL")
     add_files("SPEngine/Source/Engine/*.cpp|Test_*.cpp")
+    add_files("SPEngine/Source/Engine/Core/*.cpp")
+    -- add_files("SPEngine/Source/Engine/Math/*.cpp")
+    add_files("SPEngine/Source/Engine/Misc/*.cpp")
+    add_files("SPEngine/Source/Engine/Event/*.cpp")
+    add_includedirs("SPEngine/Source/Engine/")
+    add_headerfiles("SPEngine/Source/Engine/Core/*.h")
     add_headerfiles("SPEngine/Source/Engine/*.h")
+
+    -- add package
+    add_packages("spdlog")
 
     --- set_configvar
     add_includedirs("$(buildir)/config/SPing/")  -- need build this path manual
