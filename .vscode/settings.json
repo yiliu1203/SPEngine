@@ -93,7 +93,11 @@
         "type": "cpp",
         "numeric": "cpp",
         "stack": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "cinttypes": "cpp",
+        "csignal": "cpp",
+        "random": "cpp",
+        "shared_mutex": "cpp"
     },
     "C_Cpp.default.cppStandard": "c++20",
     "search.exclude": {

@@ -70,7 +70,10 @@ target("Engine")
     add_files("SPEngine/Source/Engine/Core/*.cpp")
     add_files("SPEngine/Source/Engine/Misc/*.cpp")
     add_files("SPEngine/Source/Engine/Event/*.cpp")
+    add_files("SPEngine/Source/Engine/Window/*.cpp")
+
     add_includedirs("SPEngine/Source/Engine/")
+
     add_headerfiles("SPEngine/Source/Engine/Core/*.h")
     add_headerfiles("SPEngine/Source/Engine/*.h")
 
@@ -83,16 +86,25 @@ target("Engine")
     set_configdir("$(buildir)/config/SPing")
     add_configfiles("SPEngine/Source/ConfigSP.h.in")
 
+    add_syslinks("kernel32.lib","user32.lib","gdi32.lib","winspool.lib","comdlg32.lib","advapi32.lib")
+    add_syslinks("shell32.lib","ole32.lib", "oleaut32.lib","uuid.lib","odbc32.lib","odbccp32.lib")
+    add_syslinks("DXGI", "D3D11", "D3D12", "D3DCompiler")
+
 target("Sandbox")
     set_kind("binary")
     add_deps("Engine")
     add_links("Engine")
     add_defines("SP_DYNAMIC_DLL")
 
+     -- add package
+    add_packages("spdlog")
+
     add_files("SPEngine/Sandbox/*.cpp|Test_*.cpp")
 
+    add_includedirs("$(buildir)/config/SPing/")
     add_includedirs("SPEngine/Source/Engine/")
     add_includedirs("SPEngine/Source/External/")
+
 
 
 -------Tools-----------------
