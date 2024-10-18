@@ -61,6 +61,30 @@ target("004_D3D12_1")
     set_runtimes("MD")
     add_defines("_XM_NO_INTRINSICS_=1", "NOMINMAX", "UNICODE", "m128_f32=vector4_f32", "m128_u32=vector4_u32")
 
+target("005_D3D12_2")
+    set_group("Samples")
+    set_kind("binary")
+    add_includedirs("SPEngine/Samples/005_D3D12_2")
+    add_includedirs("$(buildir)/config/SPing/")
+    add_files("SPEngine/Samples/005_D3D12_2/*.cpp|Test_*.cpp")  -- exclude Test_*.cpp
+     -- add package
+    add_packages("spdlog")
+    add_syslinks("User32", "kernel32", "Gdi32", "Shell32", "DXGI", "D3D12", "D3DCompiler")
+    set_runtimes("MD")
+    add_defines("_XM_NO_INTRINSICS_=1", "NOMINMAX", "m128_f32=vector4_f32", "m128_u32=vector4_u32")
+
+
+target("005_D3D12_3")
+    set_group("Samples")
+    set_kind("binary")
+    add_includedirs("SPEngine/Samples/005_D3D12_3")
+    add_includedirs("$(buildir)/config/SPing/")
+    add_files("SPEngine/Samples/005_D3D12_3/*.cpp|Test_*.cpp")  -- exclude Test_*.cpp
+     -- add package
+    add_packages("spdlog")
+    add_syslinks("User32", "kernel32", "Gdi32", "Shell32", "DXGI", "D3D12", "D3DCompiler")
+    set_runtimes("MD")
+    add_defines("_XM_NO_INTRINSICS_=1", "NOMINMAX", "m128_f32=vector4_f32", "m128_u32=vector4_u32")
 
 target("Engine")
     set_group("Engine")
