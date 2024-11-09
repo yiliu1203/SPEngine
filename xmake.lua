@@ -12,6 +12,7 @@ set_languages("clatest", "cxx20")
 -- add_cxflags("/execution-charset:utf-8", {force=true})
 -- add_cxflags("/wd4819", {force=true})
 add_requires("catch2")
+set_warnings("allextra")
 
 target("000_Hello")
     set_group("Samples")
@@ -74,17 +75,33 @@ target("005_D3D12_2")
     add_defines("_XM_NO_INTRINSICS_=1", "NOMINMAX", "m128_f32=vector4_f32", "m128_u32=vector4_u32")
 
 
-target("005_D3D12_3")
+target("006_D3D12_3")
     set_group("Samples")
     set_kind("binary")
-    add_includedirs("SPEngine/Samples/005_D3D12_3")
+    add_includedirs("SPEngine/Samples/006_D3D12_3")
     add_includedirs("$(buildir)/config/SPing/")
-    add_files("SPEngine/Samples/005_D3D12_3/*.cpp|Test_*.cpp")  -- exclude Test_*.cpp
+    add_files("SPEngine/Samples/006_D3D12_3/*.cpp|Test_*.cpp")  -- exclude Test_*.cpp
      -- add package
     add_packages("spdlog")
     add_syslinks("User32", "kernel32", "Gdi32", "Shell32", "DXGI", "D3D12", "D3DCompiler")
     set_runtimes("MD")
     add_defines("_XM_NO_INTRINSICS_=1", "NOMINMAX", "m128_f32=vector4_f32", "m128_u32=vector4_u32")
+
+
+target("007_d3dbook_box")
+    set_group("Samples")
+    set_kind("binary")
+    add_includedirs("SPEngine/Samples/007_d3dbook_box")
+    add_includedirs("SPEngine/Samples/007_d3dbook_common")
+    add_includedirs("$(buildir)/config/SPing/")
+    add_files("SPEngine/Samples/007_d3dbook_box/*.cpp|Test_*.cpp")  -- exclude Test_*.cpp
+    add_files("SPEngine/Samples/007_d3dbook_common/Common/*.cpp|Test_*.cpp")  -- exclude Test_*.cpp
+     -- add package
+    add_packages("spdlog")
+    add_syslinks("User32", "kernel32", "Gdi32", "Shell32", "dxguid", "DXGI", "D3D12", "D3DCompiler")
+    set_runtimes("MD")
+    add_defines("_XM_NO_INTRINSICS_=1", "NOMINMAX", "UNICODE", "m128_f32=vector4_f32", "m128_u32=vector4_u32", "DX_DEBUG")
+
 
 target("Engine")
     set_group("Engine")
