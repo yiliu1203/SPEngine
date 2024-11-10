@@ -2,6 +2,7 @@
 
 #include "d3dUtil.h"
 
+// clang-format off
 template <typename T>
 class UploadBuffer
 {
@@ -41,7 +42,11 @@ public:
 
     ID3D12Resource* Resource() const { return mUploadBuffer.Get(); }
 
-    void CopyData(int elementIndex, const T& data) { memcpy(&mMappedData[elementIndex * mElementByteSize], &data, sizeof(T)); }
+    void CopyData(int elementIndex, const T& data) {
+        
+        memcpy(&mMappedData[elementIndex * mElementByteSize], &data, sizeof(T));
+        
+        }
 
 private:
     Microsoft::WRL::ComPtr<ID3D12Resource> mUploadBuffer;
@@ -50,3 +55,5 @@ private:
     UINT mElementByteSize  = 0;
     bool mIsConstantBuffer = false;
 };
+
+// clang-format on
