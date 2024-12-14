@@ -4,7 +4,11 @@
 #include "Common/UploadBuffer.h"
 #include "Common/d3dUtil.h"
 
-
+struct Vertex
+{
+    DirectX::XMFLOAT3 Pos;
+    DirectX::XMFLOAT4 Color;
+};
 struct ObjectConstants
 {
     DirectX::XMFLOAT4X4 World = MathHelper::Identity4x4();
@@ -28,11 +32,7 @@ struct PassConstants
     float               DeltaTime           = 0.0f;
 };
 
-struct Vertex
-{
-    DirectX::XMFLOAT3 Pos;
-    DirectX::XMFLOAT4 Color;
-};
+
 
 // Stores the resources needed for the CPU to build the command lists
 // for a frame.

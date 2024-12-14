@@ -11,6 +11,7 @@ set_languages("clatest", "cxx20")
 -- add_defines( "UNICODE", "_UNICODE")
 -- add_cxflags("/execution-charset:utf-8", {force=true})
 -- add_cxflags("/wd4819", {force=true})
+add_cxflags("/permissive", {force=true})
 add_requires("catch2")
 set_warnings("allextra")
 
