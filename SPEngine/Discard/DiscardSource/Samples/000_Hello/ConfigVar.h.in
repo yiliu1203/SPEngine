@@ -1,0 +1,3 @@
+﻿// clang-format off
+#define TEST_CONFIG_VAR ${TEST_CONFIG_VAR}
+// clang-format on

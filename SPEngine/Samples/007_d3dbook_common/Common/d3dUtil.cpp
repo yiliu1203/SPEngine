@@ -65,9 +65,9 @@ Microsoft::WRL::ComPtr<ID3D12Resource> d3dUtil::CreateDefaultBuffer(ID3D12Device
     // the intermediate upload heap data will be copied to mBuffer.
     auto barrier0 = CD3DX12_RESOURCE_BARRIER::Transition(defaultBuffer.Get(), D3D12_RESOURCE_STATE_COMMON, D3D12_RESOURCE_STATE_COPY_DEST);
     auto barrier1 = CD3DX12_RESOURCE_BARRIER::Transition(defaultBuffer.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_GENERIC_READ);
-    cmdList->ResourceBarrier(1, &barrier0);
+    cmdList->ResourceBarrier(1, &barrier0);   // 这里不需要了？
     UpdateSubresources<1>(cmdList, defaultBuffer.Get(), uploadBuffer.Get(), 0, 0, 1, &subResourceData);
-    cmdList->ResourceBarrier(1, &barrier1);
+    cmdList->ResourceBarrier(1, &barrier1);   // 这里不需要了？
 
     // Note: uploadBuffer has to be kept alive after the above function calls because
     // the command list has not been executed yet that performs the actual copy.

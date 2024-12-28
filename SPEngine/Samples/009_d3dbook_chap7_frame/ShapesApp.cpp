@@ -595,7 +595,7 @@ void ShapesApp::BuildBoxGeometry()
         indices.insert(indices.end(), meshData.GetIndices16().begin(), meshData.GetIndices16().end());
         for (size_t index = 0; index < meshData.Vertices.size(); index++) {
             vertices[k].Pos   = meshData.Vertices[index].Position;
-            vertices[k].Color = XMFLOAT4(colors[index]);
+            vertices[k].Color = XMFLOAT4(colors[i]);
             k++;
         }
     }
