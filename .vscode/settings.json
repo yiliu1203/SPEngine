@@ -123,4 +123,7 @@
     "pasteImage.path": "${currentFileDir}/images",
     "pasteImage.basePath": "${currentFileDir}",
     "pasteImage.defaultName": "YMMDDHHmmss",
+    "markdown.copyFiles.destination": {
+        "/Doc/**/*": "images/${documentBaseName}/"
+    }
 }

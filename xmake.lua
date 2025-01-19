@@ -29,14 +29,14 @@ target("001_External")
     add_deps("Engine")
     add_links("Engine")
     add_defines("SP_DYNAMIC_DLL")
-    add_includedirs("SPEngine/Source/Engine/")
-    add_includedirs("SPEngine/Source/External/")
+    add_includedirs("SPEngine/Engine/Source/")
+    add_includedirs("SPEngine/Engine/External/")
 
     add_deps("Engine")
     add_links("Engine")
     add_defines("SP_DYNAMIC_DLL")
-    add_includedirs("SPEngine/Source/Engine/")
-    add_includedirs("SPEngine/Source/External/")
+    add_includedirs("SPEngine/Engine/Source/")
+    add_includedirs("SPEngine/Engine/External/")
     add_options("Tool-LibClang")
 
 target("002_TestLibClang")
@@ -151,16 +151,16 @@ target("Engine")
     set_group("Engine")
     set_kind("shared")
     add_defines("SP_DYNAMIC_DLL", "SP_BUILD_DLL")
-    add_files("SPEngine/Source/Engine/*.cpp|Test_*.cpp")
-    add_files("SPEngine/Source/Engine/Core/*.cpp")
-    add_files("SPEngine/Source/Engine/Misc/*.cpp")
-    add_files("SPEngine/Source/Engine/Event/*.cpp")
-    add_files("SPEngine/Source/Engine/Window/*.cpp")
+    add_files("SPEngine/Engine/Source/*.cpp|Test_*.cpp")
+    add_files("SPEngine/Engine/Source/Core/*.cpp")
+    add_files("SPEngine/Engine/Source/Misc/*.cpp")
+    add_files("SPEngine/Engine/Source/Event/*.cpp")
+    add_files("SPEngine/Engine/Source/Window/*.cpp")
 
-    add_includedirs("SPEngine/Source/Engine/")
+    add_includedirs("SPEngine/Engine/Source/")
 
-    add_headerfiles("SPEngine/Source/Engine/Core/*.h")
-    add_headerfiles("SPEngine/Source/Engine/*.h")
+    add_headerfiles("SPEngine/Engine/Source/Core/*.h")
+    add_headerfiles("SPEngine/Engine/Source/*.h")
 
     -- add package
     add_packages("spdlog")
@@ -169,7 +169,7 @@ target("Engine")
     add_includedirs("$(buildir)/config/SPing/")  -- need build this path manual
     set_configvar("PROJECT_ROOT",  "$(projectdir)")
     set_configdir("$(buildir)/config/SPing")
-    add_configfiles("SPEngine/Source/ConfigSP.h.in")
+    add_configfiles("SPEngine/Engine/ConfigSP.h.in")
 
     add_syslinks("kernel32.lib","user32.lib","gdi32.lib","winspool.lib","comdlg32.lib","advapi32.lib")
     add_syslinks("shell32.lib","ole32.lib", "oleaut32.lib","uuid.lib","odbc32.lib","odbccp32.lib")
@@ -187,8 +187,8 @@ target("Sandbox")
     add_files("SPEngine/Sandbox/*.cpp|Test_*.cpp")
 
     add_includedirs("$(buildir)/config/SPing/")
-    add_includedirs("SPEngine/Source/Engine/")
-    add_includedirs("SPEngine/Source/External/")
+    add_includedirs("SPEngine/Engine/Source/")
+    add_includedirs("SPEngine/Engine/External/")
 
 
 
