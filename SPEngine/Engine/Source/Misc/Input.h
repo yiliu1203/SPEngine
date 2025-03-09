@@ -2,21 +2,19 @@
 
 #include "PCH.h"
 #include "Core/Delegate.h"
+#include "Core/Singleton.h"
 
 
 namespace SP {
-
-
-template <typename T>
-class Delegate2
-{};
 
 class Event;
 class Application;
 class Win32Window;
 
 
-class SP_API Input
+
+
+class SP_API Input : Singleton<Input>
 {
     friend class Application;
     friend class Win32Window;
@@ -24,12 +22,12 @@ class SP_API Input
 public:
     using EventDelegateType = Delegate<bool, Event&>;
     using EventHandleType   = typename EventDelegateType::Handler;
-    inline static bool IsKeyPressed(uint32 keycode) { return s_instance->IsKeyPressedImpl(keycode); }
-    inline static bool IsMouseButtonPressed(uint32 keycode) { return s_instance->IsMouseButtonPressedImpl(keycode); }
-    inline static std::pair<int, int> GetMousePosition() { return s_instance->GetMousePositionImpl(); }
-    inline static int                 GetMousePositionX() { return s_instance->GetMousePositionXImpl(); }
-    inline static int                 GetMousePositionY() { return s_instance->GetMousePositionYImpl(); }
-    inline static Input* Instance() { return Input::s_instance; }
+    inline static bool                IsKeyPressed(uint32 keycode) { return Get().IsKeyPressedImpl(keycode); }
+    inline static bool                IsMouseButtonPressed(uint32 keycode) { return Get().IsMouseButtonPressedImpl(keycode); }
+    inline static std::pair<int, int> GetMousePosition() { return Get().GetMousePositionImpl(); }
+    inline static int                 GetMousePositionX() { return Get().GetMousePositionXImpl(); }
+    inline static int                 GetMousePositionY() { return Get().GetMousePositionYImpl(); }
+    // inline static Input*              Instance() { return Input::s_instance; }
 
 
     void AddEventListener(EventHandleType handle);
@@ -70,7 +68,7 @@ private:
     static void TrimBuffer(std::queue<T>& buffer) noexcept;
 
 private:
-    static Input*    s_instance;
+    // static Input*    s_instance;
     std::bitset<512> m_keystate;
     std::queue<char> m_charbuffer;
     int              m_mouseX;

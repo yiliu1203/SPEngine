@@ -13,8 +13,8 @@ struct Global
 {
     static Engine*               g_engine;
     static RHI::GraphicsContext* g_context;
-    static Input*                g_input;
-    static Window*               g_window;
+    // static Input*                g_input;
+    static Window* g_window;
     // static RHI::Device*          g_device;
 };
 

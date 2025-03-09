@@ -1,8 +1,10 @@
 ﻿#pragma once
 
 #include "_Macro_.h"
+#include <spdlog/formatter.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
+
 
 
 namespace SP {

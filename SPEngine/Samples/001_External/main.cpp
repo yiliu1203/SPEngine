@@ -1,6 +1,9 @@
 ﻿#include <inja/inja.hpp>
 #include <iostream>
+#include <signals/optional.hpp>
+#include <signals/signals.hpp>
 #include <string>
+
 
 using namespace inja;
 

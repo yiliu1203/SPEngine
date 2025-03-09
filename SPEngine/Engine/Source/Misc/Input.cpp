@@ -7,8 +7,6 @@
 
 namespace SP {
 
-Input* Input::s_instance = new Input();
-
 void Input::AddEventListener(EventHandleType handle)
 {
     m_DelegateDispacher += handle;

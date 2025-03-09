@@ -31,9 +31,6 @@ public:
 
     bool OnEvent(Event& event);
 
-    void PushLayer(Layer* layer);
-    void PushOverLayer(Layer* layer);
-
     Window* GetWindow() const { return _Window.get(); }
 
     const Layer* GetLayer(const std::string& layername);
@@ -44,7 +41,7 @@ private:
     bool OnWindowResize(const WindowResizeEvent& e);
 
 private:
-    ImGuiLayer*             _ImGuiLayer;
+    Layer*                  _main_layer;
     std::unique_ptr<Window> _Window;
     bool                    _IsRunning;
     LayerStack              _LayerStack;

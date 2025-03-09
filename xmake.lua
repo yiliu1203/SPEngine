@@ -7,6 +7,9 @@ set_optimize("none")
 -- add_requires("freetype");
 -- add_requires("lunasvg");
 add_requires("spdlog")
+add_requires("spdlog", {system = false, configs = {header_only = true, shared = false}})
+
+-- add_defines("SPDLOG_COMPILED_LIB", "SPDLOG_SHARED_LIB", "spdlog_EXPORTS")
 set_languages("clatest", "cxx20")
 -- add_defines( "UNICODE", "_UNICODE")
 -- add_cxflags("/execution-charset:utf-8", {force=true})

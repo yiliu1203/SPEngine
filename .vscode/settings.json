@@ -99,7 +99,9 @@
         "random": "cpp",
         "shared_mutex": "cpp",
         "coroutine": "cpp",
-        "resumable": "cpp"
+        "resumable": "cpp",
+        "*.def": "cpp",
+        "*.inc": "cpp"
     },
     "C_Cpp.default.cppStandard": "c++20",
     "search.exclude": {

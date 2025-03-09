@@ -10,6 +10,7 @@ namespace SP {
 class Layer;
 class Engine;
 class IWindow;
+struct WindowEventInfo;
 
 class SP_API Application
 {
@@ -26,9 +27,10 @@ public:
 
     void Close();
 
-    bool OnEvent(Event& event);
+    bool OnEvent(const WindowEventInfo& event);
 
     const IWindow* GetWindow() const { return m_window.get(); }
+
 
     static Application* Get();
 

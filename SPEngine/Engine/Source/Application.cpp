@@ -20,9 +20,11 @@ Application::Application()
 
 bool Application::InitMainWindow()
 {
-    m_window = std::unique_ptr<IWindow>(IWindow::Create());
+    WindowProps props;
+    props.EventCallback = [this](void* data) { this->OnEvent(*reinterpret_cast<WindowEventInfo*>(data)); };   // std::bind(&Application::OnEvent, this, std::placeholders::_1);
+    m_window            = std::unique_ptr<IWindow>(IWindow::Create(props));
     // Global::g_input->AddEventListener(Input::EventDelegateType::FromMethod<Application, &Application::OnEvent>(this));
-    ADD_LISTENER(Input, Application, OnEvent);
+    // ADD_LISTENER(Input, Application, OnEvent);
     return true;
 }
 
@@ -35,20 +37,21 @@ bool Application::InitRenderer()
 
 Application::~Application() {}
 
-bool Application::OnEvent(Event& event)
+bool Application::OnEvent(const WindowEventInfo& event)
 {
-    SP_INFO("Event({0})", event);
+    // SP_INFO("Event({0})", event);
 
-    EventDispatcher eventDisPatcher(event);
-    eventDisPatcher.Dispatch<WindowCloseEvent>([this](WindowCloseEvent& e) -> bool {
-        Close();
-        return true;
-    });
+    // EventDispatcher eventDisPatcher(event);
+    // eventDisPatcher.Dispatch<WindowCloseEvent>([this](WindowCloseEvent& e) -> bool {
+    //     Close();
+    //     return true;
+    // });
 
-    eventDisPatcher.Dispatch<WindowResizeEvent>([this](WindowResizeEvent& e) -> bool {
-        OnWindowResize(e);
-        return false;
-    });
+    // eventDisPatcher.Dispatch<WindowResizeEvent>([this](WindowResizeEvent& e) -> bool {
+    //     OnWindowResize(e);
+    //     return false;
+    // });
+
     return true;
 }
 
@@ -75,8 +78,6 @@ void Application::Run()
 
     if (!m_running) {
         m_running = true;
-        // todo for dev dx11
-        // for (Layer* layer : _LayerStack) layer->OnPrepared();
     }
 
     while (m_running) {
@@ -84,16 +85,6 @@ void Application::Run()
             m_running = false;
             break;
         }
-        // todo for dev dx11
-        // _engine->RunFrame();
-        // for (Layer* layer : _LayerStack) layer->OnUpdate();
-
-        // _ImGuiLayer->Begin();
-        // for (Layer* layer : _LayerStack) layer->OnImGuiRenderer();
-        // _ImGuiLayer->End();
-
-        // SP_INFO("mouse_pos: {0},{1}", Input::GetMousePositionX(), Input::GetMousePositionY());
-        // _Window->SwapChains();
     }
 }
 

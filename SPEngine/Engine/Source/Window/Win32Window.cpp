@@ -65,7 +65,7 @@ Win32Window::Win32Window(const WindowProps& prop)
     ShowWindow(mHwnd, SW_SHOWDEFAULT);
     SetWindowText(mHwnd, GetTitle().c_str());
     // EnableOpenGL();
-    InitRendererContext();
+    // InitRendererContext();
 }
 
 Win32Window::~Win32Window() {}
@@ -90,18 +90,18 @@ int Win32Window::ProcessMessage()
         }
     }
     if (msg.message == WM_QUIT) {
-        DisableRendererContext();
+        // DisableRendererContext();
         return -1;
     }
     return 1;
 }
 
-void Win32Window::SwapChains()
-{
-    // SwapBuffers(m_hdc);
-    // if (IsVSync()) glFinish();
-    // Global::g_context->SwapBuffers();
-}
+// void Win32Window::SwapChains()
+// {
+//     // SwapBuffers(m_hdc);
+//     // if (IsVSync()) glFinish();
+//     // Global::g_context->SwapBuffers();
+// }
 
 
 LRESULT CALLBACK Win32Window::HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
@@ -126,6 +126,20 @@ LRESULT CALLBACK Win32Window::HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam,
 
 LRESULT Win32Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
 {
+    IWindow*        this_window = reinterpret_cast<IWindow*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
+    WindowEventInfo window_data{};
+    window_data.handle = hWnd;
+    window_data.msg    = static_cast<uint32>(msg);
+    window_data.wparam = static_cast<uint64>(wParam);
+    window_data.lparam = static_cast<int64>(lParam);
+    window_data.width  = this_window ? static_cast<float>(this_window->GetWidth()) : 0.0f;
+    window_data.height = this_window ? static_cast<float>(this_window->GetHeight()) : 0.0f;
+
+    if (msg == WM_DISPLAYCHANGE || msg == WM_SIZE) {
+        window_data.width  = static_cast<float>(lParam & 0xffff);
+        window_data.height = static_cast<float>((lParam >> 16) & 0xffff);
+    }
+
     switch (msg) {
     case WM_CLOSE:
     case WM_DESTROY:
@@ -135,67 +149,87 @@ LRESULT Win32Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
         break;
     }
     case WM_KILLFOCUS:
-    {
-        this->OnLoseFocus();
-        break;
-    }
-
     case WM_KEYDOWN:
-    {
-        // The previous key state. The value is 1 if the key is down before the message is sent, or it is zero if the key is up.
-        bool isReapeat = lParam & 0x40000000;
-        this->OnKeyPressed(static_cast<int>(wParam), isReapeat);
-        break;
-    }
-    case WM_KEYUP: this->OnKeyReleased(static_cast<int>(wParam)); break;
-    case WM_CHAR: this->OnChar(static_cast<int>(wParam)); break;
+    case WM_KEYUP:
+    case WM_CHAR:
     case WM_MOUSEMOVE:
-    {
-        // todo when mouse drag outof window
-        const POINTS pt = MAKEPOINTS_FROM_PARAM(lParam);
-        this->OnMouseMoved(pt.x, pt.y);
-        break;
-    }
-
     case WM_LBUTTONDOWN:
-    {
-        const POINTS pt = MAKEPOINTS_FROM_PARAM(lParam);
-        this->OnMouseLeftButtonPressed(pt.x, pt.y);
-        break;
-    }
-
     case WM_RBUTTONDOWN:
-    {
-        const POINTS pt = MAKEPOINTS_FROM_PARAM(lParam);
-        this->OnMouseRightButtonPressed(pt.x, pt.y);
-        break;
-    }
-
     case WM_LBUTTONUP:
-    {
-        const POINTS pt = MAKEPOINTS_FROM_PARAM(lParam);
-        this->OnMouseLeftButtonPressed(pt.x, pt.y);
-        break;
-    }
-
     case WM_RBUTTONUP:
-    {
-        const POINTS pt = MAKEPOINTS_FROM_PARAM(lParam);
-        this->OnMouseRightButtonPressed(pt.x, pt.y);
-        break;
-    }
-
     case WM_MOUSEWHEEL:
+    case WM_DISPLAYCHANGE:
+    case WM_SIZE:
     {
-        const POINTS pt    = MAKEPOINTS_FROM_PARAM(lParam);
-        const int    delta = GET_WHEEL_DELTA_WPARAM(wParam);
-        this->OnMouseScrolled(pt.x, pt.y, delta);
-        break;
+        this->BroadcastEvent(&window_data);
     }
+        // case WM_KILLFOCUS:
+        // {
+        //     this->OnLoseFocus();
+        //     break;
+        // }
+
+        // case WM_KEYDOWN:
+        // {
+        //     // The previous key state. The value is 1 if the key is down before the message is sent, or it is zero if the key is up.
+        //     bool isReapeat = lParam & 0x40000000;
+        //     this->OnKeyPressed(static_cast<int>(wParam), isReapeat);
+        //     break;
+        // }
+        // case WM_KEYUP: this->OnKeyReleased(static_cast<int>(wParam)); break;
+        // case WM_CHAR: this->OnChar(static_cast<int>(wParam)); break;
+        // case WM_MOUSEMOVE:
+        // {
+        //     // todo when mouse drag outof window
+        //     const POINTS pt = MAKEPOINTS_FROM_PARAM(lParam);
+        //     this->OnMouseMoved(pt.x, pt.y);
+        //     break;
+        // }
+
+        // case WM_LBUTTONDOWN:
+        // {
+        //     const POINTS pt = MAKEPOINTS_FROM_PARAM(lParam);
+        //     this->OnMouseLeftButtonPressed(pt.x, pt.y);
+        //     break;
+        // }
+
+        // case WM_RBUTTONDOWN:
+        // {
+        //     const POINTS pt = MAKEPOINTS_FROM_PARAM(lParam);
+        //     this->OnMouseRightButtonPressed(pt.x, pt.y);
+        //     break;
+        // }
+
+        // case WM_LBUTTONUP:
+        // {
+        //     const POINTS pt = MAKEPOINTS_FROM_PARAM(lParam);
+        //     this->OnMouseLeftButtonPressed(pt.x, pt.y);
+        //     break;
+        // }
+
+        // case WM_RBUTTONUP:
+        // {
+        //     const POINTS pt = MAKEPOINTS_FROM_PARAM(lParam);
+        //     this->OnMouseRightButtonPressed(pt.x, pt.y);
+        //     break;
+        // }
+
+        // case WM_MOUSEWHEEL:
+        // {
+        //     const POINTS pt    = MAKEPOINTS_FROM_PARAM(lParam);
+        //     const int    delta = GET_WHEEL_DELTA_WPARAM(wParam);
+        //     this->OnMouseScrolled(pt.x, pt.y, delta);
+        //     break;
+        // }
 
     default: break;
     }
     return DefWindowProc(hWnd, msg, wParam, lParam);
+}
+
+void Win32Window::Quit(int32 exit_code) const
+{
+    PostQuitMessage(exit_code);
 }
 
 

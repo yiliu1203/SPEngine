@@ -6,26 +6,27 @@
 namespace SP {
 class Win32Window;
 
-namespace RHI {
-extern void EnableRendererAPI(Win32Window& _this);
-extern void DisableRendererAPI(Win32Window& _this);
-class OpenGLWin32Context;
-}   // namespace RHI
+// namespace RHI {
+// extern void EnableRendererAPI(Win32Window& _this);
+// extern void DisableRendererAPI(Win32Window& _this);
+// class OpenGLWin32Context;
+// }   // namespace RHI
 
 
 class SP_API Win32Window : public IWindow
 {
 public:
-    friend void RHI::EnableRendererAPI(Win32Window& _this);
-    friend void RHI::DisableRendererAPI(Win32Window& _this);
-    friend class RHI::OpenGLWin32Context;
+    // friend void RHI::EnableRendererAPI(Win32Window& _this);
+    // friend void RHI::DisableRendererAPI(Win32Window& _this);
+    // friend class RHI::OpenGLWin32Context;
     Win32Window(const WindowProps&);
     ~Win32Window();
     void SetTitle(const char* title) const;
+    void Quit(int32 exit_code = 0) const;
 
-    virtual void  SetVSync(bool enabled) override {}
+    // virtual void  SetVSync(bool enabled) override {}
     virtual int   ProcessMessage();
-    virtual void  SwapChains();
+    virtual void  SwapChains() {}
     virtual void  DrawScene() {}
     virtual void* GetNativeWindowHandle() const { return (void*)this; };
     virtual void* GetWnd() const { return (void*)(&this->mHwnd); }

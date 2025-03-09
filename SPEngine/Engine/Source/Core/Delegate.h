@@ -1,6 +1,10 @@
 #pragma once
 #include "PCH.h"
 
+
+/***
+废弃，使用 Delegate.hpp
+*/
 namespace SP {
 
 template <typename R, typename... Args>
@@ -95,11 +99,9 @@ private:
 };
 
 
-#define ADD_LISTENER(sys_module, cls, func) \
-    sys_module::Instance()->AddEventListener(sys_module::EventDelegateType::FromMethod<cls, &cls::func>(this));
+#define ADD_LISTENER(sys_module, cls, func) sys_module::Instance()->AddEventListener(sys_module::EventDelegateType::FromMethod<cls, &cls::func>(this));
 
-#define REMOVE_LISTENER(sys_module, cls, func) \
-    sys_module::Instance()->RemoveEventListener(sys_module::EventDelegateType::FromMethod<cls, &cls::func>(this));
+#define REMOVE_LISTENER(sys_module, cls, func) sys_module::Instance()->RemoveEventListener(sys_module::EventDelegateType::FromMethod<cls, &cls::func>(this));
 
 
 

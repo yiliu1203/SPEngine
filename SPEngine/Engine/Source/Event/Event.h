@@ -45,9 +45,9 @@ constexpr int EventCategoryMap[/*EventTypeEnd*/] = {None_,
                                                     EventCategoryApplication,
                                                     EventCategoryApplication,
                                                     EventCategoryApplication,
-                                                    EventCategoryApplication,                      /* AppUpdate **/
+                                                    EventCategoryApplication, /* AppUpdate **/
                                                     EventCategoryApplication,
-                                                    EventCategoryInput | EventCategoryKeyboard,    /** KeyPressed **/
+                                                    EventCategoryInput | EventCategoryKeyboard, /** KeyPressed **/
                                                     EventCategoryInput | EventCategoryKeyboard,
                                                     EventCategoryInput | EventCategoryMouseButton, /**MouseButtonPressed**/
                                                     EventCategoryInput | EventCategoryMouseButton, /**MouseButtonPressed**/
@@ -122,17 +122,23 @@ private:
 
 
 
-// spdlog 库用来输出
-template <typename T>
-struct fmt::formatter<T, std::enable_if_t<std::is_base_of<SP::Event, T>::value, char>> : fmt::formatter<std::string>
-{
-    template <typename FormatCtx>
-    auto format(const SP::Event& a, FormatCtx& ctx)
-    {
-        return fmt::formatter<std::string>::format(a.ToString(), ctx);
-    }
-};
-
+// // spdlog 库用来输出
+// template <typename T>
+// struct fmt::formatter<T, std::enable_if_t<std::is_base_of<SP::Event, T>::value, char>> : fmt::formatter<std::string>
+// {
+//     template <typename FormatCtx>
+//     auto format(const SP::Event& a, FormatCtx& ctx)
+//     {
+//         return fmt::formatter<std::string>::format(a.ToString(), ctx);
+//     }
+// };
 
 
 }   // namespace SP
+
+
+template <>
+struct fmt::formatter<SP::Event> : fmt::formatter<std::string>
+{
+    auto format(const SP::Event& my, fmt::format_context& ctx) const -> decltype(ctx.out()) { return fmt::format_to(ctx.out(), "[my_type i={}]", my.ToString()); }
+};
