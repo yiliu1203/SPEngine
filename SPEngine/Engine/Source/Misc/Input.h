@@ -1,8 +1,9 @@
 ﻿#pragma once
 
 #include "PCH.h"
-#include "Core/Delegate.h"
 #include "Core/Singleton.h"
+#include "Event/Delegate.h"
+
 
 
 namespace SP {

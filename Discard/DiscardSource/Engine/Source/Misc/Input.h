@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "PCH.h"
-#include "Core/Delegate.h"
+#include "Event/Delegate.h"
 
 
 namespace SP {
@@ -24,12 +24,12 @@ class SP_API Input
 public:
     using EventDelegateType = Delegate<bool, Event&>;
     using EventHandleType   = typename EventDelegateType::Handler;
-    inline static bool IsKeyPressed(uint32 keycode) { return s_instance->IsKeyPressedImpl(keycode); }
-    inline static bool IsMouseButtonPressed(uint32 keycode) { return s_instance->IsMouseButtonPressedImpl(keycode); }
+    inline static bool                IsKeyPressed(uint32 keycode) { return s_instance->IsKeyPressedImpl(keycode); }
+    inline static bool                IsMouseButtonPressed(uint32 keycode) { return s_instance->IsMouseButtonPressedImpl(keycode); }
     inline static std::pair<int, int> GetMousePosition() { return s_instance->GetMousePositionImpl(); }
     inline static int                 GetMousePositionX() { return s_instance->GetMousePositionXImpl(); }
     inline static int                 GetMousePositionY() { return s_instance->GetMousePositionYImpl(); }
-    inline static Input* Instance() { return Input::s_instance; }
+    inline static Input*              Instance() { return Input::s_instance; }
 
 
     void AddEventListener(EventHandleType handle);
